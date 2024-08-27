@@ -1,0 +1,74 @@
+{
+  "Documents":[
+    {
+      "Title": "Premier Financial Corp. Surveillance Report",
+      "Content": "Surveillance report on Premier Financial Corp.",
+      "Author": "Amy Smith",
+      "Date": "2023-03-15",
+      "Status": "Live"
+    },
+    {
+      "Title": "12 Things in Credit: July 2024",
+      "Content": "12 things you need to know about credit in July 2024",
+      "Author": "John Doe",
+      "Date": "2024-07-01",
+      "Status": "Preview"
+    },
+    {
+      "Title": "Corn Belt Power Cooperative Information Disclosure Form",
+      "Content": "Information disclosure form for Corn Belt Power Cooperative",
+      "Author": "Brad Johnson",
+      "Date": "2023-02-28",
+      "Status": "Live"
+    },
+    {
+        "Title": "Credit Card Fraud Prevention Tips",
+        "Content": "Tips to prevent credit card fraud",
+        "Author": "Jane Cassey",
+        "Date": "2024-06-15",
+        "Status": "Draft"
+    },
+    {
+        "Title": "How to Improve Your Credit Score",
+        "Content": "Tips to improve your credit score",
+        "Author": "John Doe",
+        "Date": "2024-06-01",
+        "Status": "Retracted"
+    },
+    {
+        "Title": "Understanding Credit Card Fees",
+        "Content": "Guide to understanding credit card fees",
+        "Author": "Jane Cassey",
+        "Date": "2024-05-15",
+        "Status": "Live"
+    },
+    {
+        "Title": "Credit Card Comparison Chart",
+        "Content": "Comparison chart of credit cards",
+        "Author": "John Doe",
+        "Date": "2024-05-01",
+        "Status": "Preview"
+    },
+    {
+        "Title": "Credit Card Rewards Programs",
+        "Content": "Guide to credit card rewards programs",
+        "Author": "Jane Cassey",
+        "Date": "2024-04-15",
+        "Status": "Live"
+    },
+    {
+        "Title": "Credit Card Security Tips",
+        "Content": "Tips to enhance credit card security",
+        "Author": "John Doe",
+        "Date": "2024-04-01",
+        "Status": "Draft"
+    },
+    {
+        "Title": "KBRA Affirms Ratings on Elm 2020-4 Trust",
+        "Content": "KBRA affirms ratings on Elm 2020-4 Trust",
+        "Author": "Jane Cassey",
+        "Date": "2024-03-15",
+        "Status": "Live"
+    }
+  ]
+}
