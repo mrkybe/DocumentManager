@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import './DocumentApp.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
-import DocumentItem from './components/DocumentItem/DocumentItem';
+import DocumentList from './components/DocumentList/DocumentList';
 
 interface Document {
   Title: string;
@@ -145,32 +145,13 @@ const DocumentApp: React.FC = () => {
         onAddClick={handleAddClick}
       />
 
-      {/* Documents List */}
-      <div className="documents-list">
-        <h2 data-testid="documents-header">
-          Documents ({filteredDocuments.length}
-          {searchTerm && ` of ${documents.length}`})
-        </h2>
-        
-        {filteredDocuments.length === 0 ? (
-          <p>No documents found.</p>
-        ) : (
-          filteredDocuments.map((doc, originalIndex) => {
-            // Find the original index in the unfiltered array
-            const actualIndex = documents.findIndex(d => d === doc);
-            
-            return (
-              <DocumentItem
-                key={actualIndex}
-                document={doc}
-                index={actualIndex}
-                onEdit={handleEditClick}
-                onDelete={handleDeleteClick}
-              />
-            );
-          })
-        )}
-      </div>
+      <DocumentList
+        documents={documents}
+        filteredDocuments={filteredDocuments}
+        searchTerm={searchTerm}
+        onEdit={handleEditClick}
+        onDelete={handleDeleteClick}
+      />
 
       {/* Add Form Modal */}
       {showAddForm && (
