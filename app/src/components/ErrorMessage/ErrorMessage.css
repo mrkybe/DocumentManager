@@ -1,10 +1,10 @@
 /* ErrorMessage specific styles - Dark Mode */
 .error-message {
   background-color: #3d1a1a;
-  border: 1px solid #da3633;
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 20px;
+  border: 0.0625rem solid #da3633;
+  padding: 0.75rem;
+  border-radius: 0.375em;
+  margin-bottom: 1.25rem;
   color: #f85149;
   display: flex;
   justify-content: space-between;
@@ -14,13 +14,13 @@
 .error-message button {
   background: none;
   border: none;
-  font-size: 18px;
+  font-size: 1.125rem;
   cursor: pointer;
   color: #f85149;
-  padding: 0 4px;
+  padding: 0 0.25rem;
 }
 
 .error-message button:hover {
   background-color: rgba(248, 81, 73, 0.1);
-  border-radius: 2px;
+  border-radius: 0.125em;
 }

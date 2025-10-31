@@ -10,47 +10,47 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(0.25rem);
 }
 
 .modal {
   background-color: #161b22;
-  border: 1px solid #30363d;
-  padding: 24px;
-  border-radius: 12px;
-  max-width: 600px;
+  border: 0.0625rem solid #30363d;
+  padding: 1.5rem;
+  border-radius: 0.75em;
+  max-width: 37.5rem;
   width: 90%;
   max-height: 80vh;
   overflow-y: auto;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
 }
 
 .modal h2 {
-  margin: 0 0 20px 0;
+  margin: 0 0 1.25rem 0;
   color: #e6edf3;
 }
 
 .confirm-dialog {
-  max-width: 400px;
+  max-width: 25rem;
   text-align: center;
 }
 
 .confirm-dialog h3 {
-  margin: 0 0 16px 0;
+  margin: 0 0 1rem 0;
   color: #e6edf3;
 }
 
 .dialog-actions {
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .modal {
     width: 95%;
-    padding: 16px;
+    padding: 1rem;
   }
 }

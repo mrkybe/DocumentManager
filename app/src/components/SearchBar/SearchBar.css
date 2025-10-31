@@ -1,17 +1,17 @@
 /* SearchBar specific styles - Dark Mode */
 .search-section {
   display: flex;
-  gap: 12px;
-  margin-bottom: 30px;
+  gap: 0.75rem;
+  margin-bottom: 1.875rem;
   align-items: center;
 }
 
 .search-section input {
   flex: 1;
-  padding: 12px;
-  border: 1px solid #30363d;
-  border-radius: 6px;
-  font-size: 16px;
+  padding: 0.75rem;
+  border: 0.0625rem solid #30363d;
+  border-radius: 0.375em;
+  font-size: 1rem;
   background-color: #21262d;
   color: #e6edf3;
   transition: border-color 0.2s ease;
@@ -20,7 +20,7 @@
 .search-section input:focus {
   outline: none;
   border-color: #58a6ff;
-  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+  box-shadow: 0 0 0 0.1875rem rgba(88, 166, 255, 0.1);
 }
 
 .search-section input::placeholder {
@@ -28,13 +28,13 @@
 }
 
 .search-section button {
-  padding: 12px 24px;
+  padding: 0.75rem 1.5rem;
   background-color: #238636;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 0.375em;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   transition: background-color 0.2s ease;
 }
@@ -44,7 +44,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .search-section {
     flex-direction: column;
     align-items: stretch;

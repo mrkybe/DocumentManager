@@ -2,13 +2,13 @@
 .document-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
 }
 
 .form-group label {
@@ -19,10 +19,10 @@
 .form-group input,
 .form-group textarea,
 .form-group select {
-  padding: 12px;
-  border: 1px solid #30363d;
-  border-radius: 6px;
-  font-size: 16px;
+  padding: 0.75rem;
+  border: 0.0625rem solid #30363d;
+  border-radius: 0.375em;
+  font-size: 1rem;
   background-color: #21262d;
   color: #e6edf3;
   transition: border-color 0.2s ease;
@@ -33,7 +33,7 @@
 .form-group select:focus {
   outline: none;
   border-color: #58a6ff;
-  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+  box-shadow: 0 0 0 0.1875rem rgba(88, 166, 255, 0.1);
 }
 
 .form-group input::placeholder,
@@ -43,28 +43,28 @@
 
 .form-group textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 6.25rem;
 }
 
 .form-actions {
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
   justify-content: flex-end;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 
 .form-actions button {
-  padding: 12px 24px;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.25em;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .form-actions button[type="submit"] {
   background-color: #238636;
   color: #f0f6fc;
-  border: 1px solid #30363d;
+  border: 0.0625rem solid #30363d;
 }
 
 .form-actions button[type="submit"]:hover {
@@ -75,7 +75,7 @@
 .form-actions button[type="button"] {
   background-color: #21262d;
   color: #e6edf3;
-  border: 1px solid #30363d;
+  border: 0.0625rem solid #30363d;
 }
 
 .form-actions button[type="button"]:hover {
