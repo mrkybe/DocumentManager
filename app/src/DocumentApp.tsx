@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './DocumentApp.css';
 import SearchBar from './components/SearchBar/SearchBar';
+import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 
 interface Document {
   Title: string;
@@ -131,10 +132,10 @@ const DocumentApp: React.FC = () => {
       <h1 data-testid="page-title-header">Document Management System</h1>
       
       {error && (
-        <div className="error-message" data-testid="error-message">
-          {error}
-          <button onClick={() => setError(null)}>×</button>
-        </div>
+        <ErrorMessage 
+          error={error} 
+          onDismiss={() => setError(null)} 
+        />
       )}
 
       <SearchBar
