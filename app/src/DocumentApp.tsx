@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './DocumentApp.css';
+import SearchBar from './components/SearchBar/SearchBar';
 
 interface Document {
   Title: string;
@@ -10,8 +11,6 @@ interface Document {
 }
 
 const DocumentApp: React.FC = () => {
-  // ===== STATE MANAGEMENT EXAMPLES =====
-
   // 1. Simple state for primitives
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
@@ -138,19 +137,11 @@ const DocumentApp: React.FC = () => {
         </div>
       )}
 
-      {/* Search Section */}
-      <div className="search-section">
-        <input
-          type="text"
-          placeholder="Search documents..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-          data-testid="search-input"
-        />
-        <button onClick={handleAddClick} data-testid="add-document-btn">
-          Add New Document
-        </button>
-      </div>
+      <SearchBar
+        searchTerm={searchTerm}
+        onSearchChange={handleSearchChange}
+        onAddClick={handleAddClick}
+      />
 
       {/* Documents List */}
       <div className="documents-list">
