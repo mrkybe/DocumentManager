@@ -4,6 +4,7 @@ import SearchBar from './components/SearchBar/SearchBar';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import DocumentList from './components/DocumentList/DocumentList';
 import Modal from './components/Modal/Modal';
+import DocumentForm from './components/DocumentForm/DocumentForm';
 
 interface Document {
   Title: string;
@@ -160,9 +161,10 @@ const DocumentApp: React.FC = () => {
         onClose={() => setShowAddForm(false)}
         title="Add New Document"
       >
-        <SimpleAddForm
+        <DocumentForm
+          mode="add"
           onSubmit={(doc) => {
-            const success = addDocument(doc);
+            const success = addDocument(doc as Omit<Document, 'Date'>);
             if (success) {
               setShowAddForm(false);
             }
@@ -178,9 +180,10 @@ const DocumentApp: React.FC = () => {
         title="Edit Document"
       >
         {editingDocument && (
-          <EditForm
-            document={editingDocument.document}
-            onSubmit={(doc) => updateDocument(editingDocument.index, doc)}
+          <DocumentForm
+            mode="edit"
+            initialDocument={editingDocument.document}
+            onSubmit={(doc) => updateDocument(editingDocument.index, doc as Document)}
             onCancel={() => setEditingDocument(null)}
           />
         )}
@@ -215,204 +218,6 @@ const DocumentApp: React.FC = () => {
   );
 };
 
-// ===== FORM COMPONENTS =====
-interface FormProps {
-  onSubmit: (doc: Omit<Document, 'Date'>) => void;
-  onCancel: () => void;
-}
 
-interface EditFormProps {
-  document: Document;
-  onSubmit: (doc: Document) => void;
-  onCancel: () => void;
-}
-
-const SimpleAddForm: React.FC<FormProps> = ({ onSubmit, onCancel }) => {
-  const [formData, setFormData] = useState({
-    Title: '',
-    Content: '',
-    Author: '',
-    Status: 'Draft' as Document['Status']
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!formData.Title.trim() || !formData.Content.trim() || !formData.Author.trim()) {
-      alert('Please fill in all fields');
-      return;
-    }
-
-    onSubmit({
-      Title: formData.Title.trim(),
-      Content: formData.Content.trim(),
-      Author: formData.Author.trim(),
-      Status: formData.Status
-    });
-  };
-
-  const handleChange = (field: keyof typeof formData) => (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: e.target.value
-    }));
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="document-form">
-      <div className="form-group">
-        <label>Title:</label>
-        <input
-          type="text"
-          value={formData.Title}
-          onChange={handleChange('Title')}
-          data-testid="title-input"
-          required
-        />
-      </div>
-      
-      <div className="form-group">
-        <label>Content:</label>
-        <textarea
-          value={formData.Content}
-          onChange={handleChange('Content')}
-          data-testid="content-input"
-          rows={4}
-          required
-        />
-      </div>
-      
-      <div className="form-group">
-        <label>Author:</label>
-        <input
-          type="text"
-          value={formData.Author}
-          onChange={handleChange('Author')}
-          data-testid="author-input"
-          required
-        />
-      </div>
-      
-      <div className="form-group">
-        <label>Status:</label>
-        <select
-          value={formData.Status}
-          onChange={handleChange('Status')}
-          data-testid="status-select"
-        >
-          <option value="Draft">Draft</option>
-          <option value="Preview">Preview</option>
-          <option value="Live">Live</option>
-          <option value="Retracted">Retracted</option>
-        </select>
-      </div>
-      
-      <div className="form-actions">
-        <button type="submit" data-testid="save-btn">
-          Save Document
-        </button>
-        <button type="button" onClick={onCancel} data-testid="cancel-btn">
-          Cancel
-        </button>
-      </div>
-    </form>
-  );
-};
-
-const EditForm: React.FC<EditFormProps> = ({ document, onSubmit, onCancel }) => {
-  const [formData, setFormData] = useState({
-    Title: document.Title,
-    Content: document.Content,
-    Author: document.Author,
-    Status: document.Status,
-    Date: document.Date
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit(formData);
-  };
-
-  const handleChange = (field: keyof typeof formData) => (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: e.target.value
-    }));
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="document-form">
-      <div className="form-group">
-        <label>Title:</label>
-        <input
-          type="text"
-          value={formData.Title}
-          onChange={handleChange('Title')}
-          data-testid="title-input"
-          required
-        />
-      </div>
-      
-      <div className="form-group">
-        <label>Content:</label>
-        <textarea
-          value={formData.Content}
-          onChange={handleChange('Content')}
-          data-testid="content-input"
-          rows={4}
-          required
-        />
-      </div>
-      
-      <div className="form-group">
-        <label>Author:</label>
-        <input
-          type="text"
-          value={formData.Author}
-          onChange={handleChange('Author')}
-          data-testid="author-input"
-          required
-        />
-      </div>
-      
-      <div className="form-group">
-        <label>Status:</label>
-        <select
-          value={formData.Status}
-          onChange={handleChange('Status')}
-          data-testid="status-select"
-        >
-          <option value="Draft">Draft</option>
-          <option value="Preview">Preview</option>
-          <option value="Live">Live</option>
-          <option value="Retracted">Retracted</option>
-        </select>
-      </div>
-      
-      <div className="form-group">
-        <label>Date:</label>
-        <input
-          type="date"
-          value={formData.Date}
-          onChange={handleChange('Date')}
-          data-testid="date-input"
-        />
-      </div>
-      
-      <div className="form-actions">
-        <button type="submit" data-testid="save-btn">
-          Update Document
-        </button>
-        <button type="button" onClick={onCancel} data-testid="cancel-btn">
-          Cancel
-        </button>
-      </div>
-    </form>
-  );
-};
 
 export default DocumentApp;
