@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import './DocumentApp.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
+import DocumentItem from './components/DocumentItem/DocumentItem';
 
 interface Document {
   Title: string;
@@ -159,45 +160,13 @@ const DocumentApp: React.FC = () => {
             const actualIndex = documents.findIndex(d => d === doc);
             
             return (
-              <div key={actualIndex} className="document-item" data-testid="document-item">
-                <div className="document-header">
-                  <div className="document-title-section">
-                    <h3>{doc.Title}</h3>
-                    <div className="document-meta">
-                      <span>
-                        <strong>Author:</strong> {doc.Author}
-                      </span>
-                      <span>
-                        <strong>Date:</strong> {doc.Date}
-                      </span>
-                      <span>
-                        <strong>Status:</strong>
-                        <span className={`status ${doc.Status.toLowerCase()}`}>
-                          {doc.Status}
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                  <div className="document-actions">
-                    <button 
-                      onClick={() => handleEditClick(actualIndex)}
-                      data-testid="edit-btn"
-                      title="Edit document"
-                    >
-                      Edit
-                    </button>
-                    <button 
-                      onClick={() => handleDeleteClick(actualIndex)}
-                      data-testid="delete-btn"
-                      className="delete-btn"
-                      title="Delete document"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-                <p className="document-content">{doc.Content}</p>
-              </div>
+              <DocumentItem
+                key={actualIndex}
+                document={doc}
+                index={actualIndex}
+                onEdit={handleEditClick}
+                onDelete={handleDeleteClick}
+              />
             );
           })
         )}
