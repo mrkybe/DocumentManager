@@ -3,6 +3,7 @@ import './DocumentApp.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import DocumentList from './components/DocumentList/DocumentList';
+import Modal from './components/Modal/Modal';
 
 interface Document {
   Title: string;
@@ -154,42 +155,46 @@ const DocumentApp: React.FC = () => {
       />
 
       {/* Add Form Modal */}
-      {showAddForm && (
-        <div className="modal-overlay">
-          <div className="modal" data-testid="modal">
-            <h2 data-testid="modal-title">Add New Document</h2>
-            <SimpleAddForm
-              onSubmit={(doc) => {
-                const success = addDocument(doc);
-                if (success) {
-                  setShowAddForm(false);
-                }
-              }}
-              onCancel={() => setShowAddForm(false)}
-            />
-          </div>
-        </div>
-      )}
+      <Modal
+        isOpen={showAddForm}
+        onClose={() => setShowAddForm(false)}
+        title="Add New Document"
+      >
+        <SimpleAddForm
+          onSubmit={(doc) => {
+            const success = addDocument(doc);
+            if (success) {
+              setShowAddForm(false);
+            }
+          }}
+          onCancel={() => setShowAddForm(false)}
+        />
+      </Modal>
 
       {/* Edit Form Modal */}
-      {editingDocument && (
-        <div className="modal-overlay">
-          <div className="modal" data-testid="modal">
-            <h2 data-testid="modal-title">Edit Document</h2>
-            <EditForm
-              document={editingDocument.document}
-              onSubmit={(doc) => updateDocument(editingDocument.index, doc)}
-              onCancel={() => setEditingDocument(null)}
-            />
-          </div>
-        </div>
-      )}
+      <Modal
+        isOpen={!!editingDocument}
+        onClose={() => setEditingDocument(null)}
+        title="Edit Document"
+      >
+        {editingDocument && (
+          <EditForm
+            document={editingDocument.document}
+            onSubmit={(doc) => updateDocument(editingDocument.index, doc)}
+            onCancel={() => setEditingDocument(null)}
+          />
+        )}
+      </Modal>
 
       {/* Delete Confirmation */}
-      {showDeleteConfirm !== null && (
-        <div className="modal-overlay">
-          <div className="modal confirm-dialog" data-testid="modal">
-            <h3 data-testid="modal-title">Confirm Delete</h3>
+      <Modal
+        isOpen={showDeleteConfirm !== null}
+        onClose={() => setShowDeleteConfirm(null)}
+        title="Confirm Delete"
+        isConfirmDialog={true}
+      >
+        {showDeleteConfirm !== null && (
+          <>
             <p>Are you sure you want to delete "{documents[showDeleteConfirm]?.Title}"?</p>
             <div className="dialog-actions">
               <button 
@@ -203,9 +208,9 @@ const DocumentApp: React.FC = () => {
                 Cancel
               </button>
             </div>
-          </div>
-        </div>
-      )}
+          </>
+        )}
+      </Modal>
     </div>
   );
 };
