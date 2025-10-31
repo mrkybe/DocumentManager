@@ -41,7 +41,7 @@ const DocumentApp: React.FC = () => {
         setLoading(true);
         setError(null);
         
-        const response = await fetch('/documents.json');
+        const response = await fetch(`${process.env.PUBLIC_URL}/documents.json`);
         if (!response.ok) {
           throw new Error('Failed to load documents');
         }
