@@ -37,7 +37,7 @@ test.describe('Document Management App', () => {
     const firstDocument = documentItems.first();
     await expect(firstDocument).toContainText('Premier Financial Corp. Surveillance Report');
     await expect(firstDocument).toContainText('Amy Smith');
-    await expect(firstDocument).toContainText('Live');
+    await expect(firstDocument).toContainText('LIVE');
     
     // Verify document counter
     await expect(page.locator('[data-testid="documents-header"]')).toContainText('Documents (10)');

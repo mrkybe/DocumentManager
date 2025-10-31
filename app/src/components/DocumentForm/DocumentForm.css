@@ -5,6 +5,16 @@
   gap: 1rem;
 }
 
+.document-form .error-message {
+  background-color: #3d1a1a;
+  border: 0.0625rem solid #da3633;
+  padding: 0.75rem;
+  border-radius: 0.375em;
+  margin-bottom: 1rem;
+  color: #f85149;
+  font-size: 0.875rem;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;

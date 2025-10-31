@@ -14,13 +14,15 @@ interface DocumentFormProps {
   mode: 'add' | 'edit';
   onSubmit: (doc: Document | Omit<Document, 'Date'>) => void;
   onCancel: () => void;
+  error?: string | null;
 }
 
 const DocumentForm: React.FC<DocumentFormProps> = ({ 
   initialDocument, 
   mode, 
   onSubmit, 
-  onCancel 
+  onCancel,
+  error
 }) => {
   const [formData, setFormData] = useState({
     Title: initialDocument?.Title || '',
@@ -70,6 +72,12 @@ const DocumentForm: React.FC<DocumentFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit} className="document-form">
+      {error && (
+        <div className="error-message" data-testid="error-message">
+          {error}
+        </div>
+      )}
+      
       <div className="form-group">
         <label>Title:</label>
         <input

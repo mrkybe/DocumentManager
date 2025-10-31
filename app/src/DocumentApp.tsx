@@ -19,6 +19,7 @@ const DocumentApp: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
 
   // 2. Array state for complex data
   const [documents, setDocuments] = useState<Document[]>([]);
@@ -67,7 +68,7 @@ const DocumentApp: React.FC = () => {
     );
 
     if (isDuplicate) {
-      setError('A document with this title already exists');
+      setFormError('A document with this title already exists');
       return false;
     }
 
@@ -78,7 +79,7 @@ const DocumentApp: React.FC = () => {
 
     // Use functional update to ensure we get latest state
     setDocuments(prevDocs => [...prevDocs, documentWithDate]);
-    setError(null);
+    setFormError(null);
     return true;
   }, [documents]);
 
@@ -111,7 +112,7 @@ const DocumentApp: React.FC = () => {
 
   const handleAddClick = () => {
     setShowAddForm(true);
-    setError(null);
+    setFormError(null);
   };
 
   const handleEditClick = (index: number) => {
@@ -158,18 +159,25 @@ const DocumentApp: React.FC = () => {
       {/* Add Form Modal */}
       <Modal
         isOpen={showAddForm}
-        onClose={() => setShowAddForm(false)}
+        onClose={() => {
+          setShowAddForm(false);
+          setFormError(null);
+        }}
         title="Add New Document"
       >
         <DocumentForm
           mode="add"
+          error={formError}
           onSubmit={(doc) => {
             const success = addDocument(doc as Omit<Document, 'Date'>);
             if (success) {
               setShowAddForm(false);
             }
           }}
-          onCancel={() => setShowAddForm(false)}
+          onCancel={() => {
+            setShowAddForm(false);
+            setFormError(null);
+          }}
         />
       </Modal>
 
