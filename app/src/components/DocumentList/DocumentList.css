@@ -4,7 +4,7 @@
   margin-bottom: 20px;
 }
 
-.documents-list p {
+.documents-list > p {
   color: #8b949e;
   font-style: italic;
   text-align: center;
